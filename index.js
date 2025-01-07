@@ -220,4 +220,20 @@ let Birds = {
     ]
   }
   
-  
+const express = require('express');
+const app = express()
+
+app.listen(3000,()=>{
+  console.log("Server is running at http://localhost:3000");
+})
+
+app.use((request,response,next)=>{
+  console.log(request.method)
+  console.log(request.url)
+  next();
+}
+)
+
+app.get("/", (request,response)=>{
+  response.send("Weelcome to the Bird Api")
+});
