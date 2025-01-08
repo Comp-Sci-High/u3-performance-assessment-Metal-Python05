@@ -223,9 +223,6 @@ let Birds = {
 const express = require('express');
 const app = express()
 
-app.listen(3000,()=>{
-  console.log("Server is running at http://localhost:3000");
-})
 
 app.use((request,response,next)=>{
   console.log(request.method)
@@ -235,5 +232,19 @@ app.use((request,response,next)=>{
 )
 
 app.get("/", (request,response)=>{
-  response.send("Weelcome to the Bird Api")
+  response.send("<h1>Welcome to the Bird Api</h1>")
 });
+
+app.get("/allBirds", (request,response)=>{
+  response.json(Birds.BirdSpecies)
+});
+
+
+app.get("/Macaw", (request,response)=>{
+  response.json(Birds.BirdSpecies[1])
+});
+
+
+app.listen(3000,()=>{
+  console.log("Server is running at http://localhost:3000");
+})
